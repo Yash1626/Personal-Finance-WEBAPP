@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 import sqlite3
+from flask import Flask, redirect, url_for, render_template, request
 
 app = Flask(__name__)
 
@@ -93,6 +94,8 @@ def get_balance():
     conn.close()
     return jsonify({'balance': balance})
 
+app.route("/")
+def index(): return render_template("home.html")
 if __name__ == '__main__':
     init_db()
     app.run(debug=True)
